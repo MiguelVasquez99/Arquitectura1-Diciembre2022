@@ -5,9 +5,9 @@ SYS_WRITE equ 0x04
 
 
 section .text
-	global _start    
-	
+	global _start       
 _start:
+
     mov edx, len
     mov ecx, msg
     mov ebx, 1
@@ -26,130 +26,134 @@ _start:
     je multi
     cmp byte[buf], "4"
     je division
-    cmp byte[buf], "5"
+    cmp byte [buf], "5"
+    mov esi, 1
+    mov ecx, 4
     je potencia
-    mov eax, 1
     int 0x80
     
 suma:
-mov edx, len_suma
-mov ecx, msg_suma
-mov	eax, 4
-mov	ebx, 1
-int 0x80
-mov eax, 4
-mov ebx, 7
-add eax, ebx
-aam
-add eax, 3030h
-mov ebp, esp
-sub esp, 2
-mov [esp], byte ah
-mov [esp+1], byte al
-mov ecx, esp
-mov edx, 2
-mov ebx, 1
-mov eax, 4
-int 0x80
-mov esp, ebp
+    mov edx, len_suma
+    mov ecx, msg_suma
+	mov	eax, 4
+	mov	ebx, 1
+	int 0x80
+	mov eax, 4
+	mov ebx, 7
+	add eax, ebx
+	aam
+	add eax, 3030h
+	mov ebp, esp
+	sub esp, 2
+	mov [esp], byte ah
+	mov [esp+1], byte al
+    mov ecx, esp
+    mov edx, 2
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+    mov esp, ebp
     
     
     jmp _start
     
 resta:
-mov edx, len_suma
-mov ecx, msg_suma
-mov	eax, 4
-mov	ebx, 1
-int 0x80
-mov eax, 8
-mov ebx, 2
-sub eax, ebx
-aam
-add eax, 3030h
-mov ebp, esp
-sub esp, 2
-mov [esp], byte ah
-mov [esp+1], byte al
-mov ecx, esp
-mov edx, 2
-mov ebx, 1
-mov eax, 4
-int 0x80
-mov esp, ebp
+    mov edx, len_suma
+    mov ecx, msg_suma
+	mov	eax, 4
+	mov	ebx, 1
+	int 0x80
+	mov eax, 8
+	mov ebx, 2
+	sub eax, ebx
+	aam
+	add eax, 3030h
+	mov ebp, esp
+	sub esp, 2
+	mov [esp], byte ah
+	mov [esp+1], byte al
+    mov ecx, esp
+    mov edx, 2
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+    mov esp, ebp
     
- jmp _start
+    
+    jmp _start
     
 multi:
-mov edx, len_multi
-mov ecx, msg_multi
-mov	eax, 3
-mov	ebx, 8
-mul	ebx
-aam
-add eax, 3030h
-mov ebp, esp
-sub esp, 2
-mov [esp], byte ah
-mov [esp+1], byte al
-mov ecx, esp
-mov edx, 2
-mov ebx, 1
-mov eax, 4
-int 0x80
-mov esp, ebp
+    mov edx, len_multi
+    mov ecx, msg_multi
+	mov	eax, 3
+	mov	ebx, 8
+	mul	ebx
+	aam
+	add eax, 3030h
+	mov ebp, esp
+	sub esp, 2
+	mov [esp], byte ah
+	mov [esp+1], byte al
+    mov ecx, esp
+    mov edx, 2
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+    mov esp, ebp
 
-
-jmp _start
-
+    
+    jmp _start
+    
 division: 
-mov edx, len_div
-mov ecx, msg_div
-mov eax, 4
-mov ebx, 1
-int 0x80
-mov eax, 40
-mov ebx, 2
-mov edx, 0
-div ebx
-aam
-add eax, 3030h 
-mov ebp, esp
-sub esp, 2
-mov [esp], byte ah
-mov [esp+1], byte al
-mov ecx, esp 
-mov edx, 2
-mov ebx, 1
-mov eax, 4
-int 0x80
-
-jmp _start
-
+    mov edx, len_div
+    mov ecx, msg_div
+    mov eax, 4
+    mov ebx, 1
+    int 0x80
+    mov eax, 40
+    mov ebx, 2
+    mov edx, 0
+    div ebx
+    aam
+    add eax, 3030h 
+    mov ebp, esp
+    sub esp, 2
+    mov [esp], byte ah
+    mov [esp+1], byte al
+    mov ecx, esp 
+    mov edx, 2
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+    
+    jmp _start
+    
 potencia: 
-mov edx, len_pot
-mov ecx, msg_pot
-add esi, esi
-dec ecx
-cmp ecx, 0
-jg potencia
-mov eax, 1
-mul esi
-aam
-add eax, 3030h 
-mov ebp, esp
-sub esp, 2
-mov [esp], byte ah
-mov [esp+1], byte al
-mov ecx, esp 
-mov eax, SYS_WRITE
-int 0x80
-mov edx, 2
-mov ebx, 1
-int SYS_INIT_MODULE
-mov esp, ebp
-
-jmp _start    
+    ;mov edi, len_pot
+    ;mov ecx, msg_pot
+    add esi, esi
+    dec ecx
+    cmp ecx, 0
+    jg potencia
+    mov eax, 1
+    mul esi
+    aam
+    add eax, 3030h 
+    mov ebp, esp
+    sub esp, 2
+    mov [esp], byte ah
+    mov [esp+1], byte al
+    mov ecx, esp 
+   mov eax, SYS_WRITE
+    mov edx, 2
+    mov ebx, 1
+    int SYS_INIT_MODULE
+    mov esp, ebp
+    mov eax, SYS_EXIT
+    mov ebx,0
+    int SYS_INIT_MODULE
+    
+    jmp _start    
     
     
 section .data
@@ -169,6 +173,5 @@ len_pot equ $ - msg_pot
 
 
 section .bss
-var1: resb 1
-var2: resb 4
-buf resb 1
+    var1: resb 4
+	buf resb 1
