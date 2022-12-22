@@ -1,3 +1,4 @@
+
 SYS_INIT_MODULE equ 0x80
 SYS_EXIT equ 0x01
 SYS_WRITE equ 0x04
@@ -149,9 +150,6 @@ potencia:
     mov ebx, 1
     int SYS_INIT_MODULE
     mov esp, ebp
-    mov eax, SYS_EXIT
-    mov ebx,0
-    int SYS_INIT_MODULE
     
     jmp _start    
     
