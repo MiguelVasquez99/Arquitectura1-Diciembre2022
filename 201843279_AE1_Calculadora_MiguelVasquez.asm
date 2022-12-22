@@ -58,8 +58,8 @@ suma:
     jmp _start
     
 resta:
-    mov edx, len_suma
-    mov ecx, msg_suma
+    mov edx, len_res
+    mov ecx, msg_res
 	mov	eax, 4
 	mov	ebx, 1
 	int 0x80
