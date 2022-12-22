@@ -28,11 +28,13 @@ Documentar cada paso en el que se utilizo el lenguaje ensamblador, teniendo en c
 
 DOCUMENTACIÓN
 
-
-
 Para empezar, se debe analizar que el lenguaje a trabajar es el lenguaje ensamblador de 32 bits, teniendo una clara diferencia con los de 8 y 16 bits, siendo que en este las variables y los registros tienen una diferencia en su uso, las interrupciones a veces pueden cambiar en pro de mejorar la programacion del usuario.
 
 Segundo paso, es el utilizar el medio de emulación que provee la pagina tutorialpoint mas específicamente ( https://www.tutorialspoint.com/compile_assembly_online.php ), se recomienda iniciar secion con la cuenta de Google, ya que esta nos provee guardar nuestro progreso.
+
+Tercer paso, para empezar a utilizar el lenguaje ensamblador se debe de entender unos conceptos de como funciona, siendo estos el buffer y la memoria, para aprender que es el buffer es una fraccion de memoria que se le asigna a una variable para que esta pueda captar los datos dinamicos, para esto Assembler tiene muchos registros para su uso, en la siguiente imagen se puede observar cuales son estos registros, siendo su objetivo el de valorar una fraccion del sistema para su uso aritmetico matematico, teniendo siempre un valor dado por el programador, usamos la 32 bits.
+
+Cuarto paso, para explicar como funciona la calculadora se debe presentar como es que funciona la pagina en la que se va emular, teniendo 4 opciones que nos funcionara, en principio la funcion execute que nos ejecutara e codigo que tengamos, Beautify que nos emularia un tipo de ordenador, share para compartir nuestro proyecto, y source code si es que queremos ver algun tipo de ejempo para utilizarlo en nuestro trabajo, en este caso solo nos servira execute.
 
 Si se tiene mas consideración de como es que funciona el codigo se puede observar todos los registros en el Github personal (https://github.com/MiguelVasquez99/Arquitectura1-Diciembre2022).
 
